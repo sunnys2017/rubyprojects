@@ -1,6 +1,6 @@
 class ArticlesController < ApplicationController
   # simple test only, username/password should move to file that not be commited.
-  http_basic_authenticate_with name: "sunny", password: "password", except: [:index, :show]
+  # http_basic_authenticate_with name: "sunny", password: "password", except: [:index, :show]
 
   def index
     @articles = Article.all
@@ -51,6 +51,7 @@ class ArticlesController < ApplicationController
     # exactly which parameters are allowed into our controller actions.
     # to prevent mass assignment issues.
     if @article.save
+      flash[:notice] = 'Article was successfully created.'
       redirect_to @article
     else
       # use render instead of redirect, so @article object is passed back 
